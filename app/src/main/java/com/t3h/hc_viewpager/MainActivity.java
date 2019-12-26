@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
 
     private void initData() {
         listFace = new ArrayList<>();
-        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 0"));
-        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 1"));
-        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 2"));
-        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 3"));
-        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 4"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha) + " 0"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha) + " 1"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha) + " 2"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha) + " 3"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha) + " 4"));
     }
 
     private Drawable imageSet(int img) {
@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
         storiesProgressView.startStories(i); // <- start progress
     }
 
-    public void destroyStories(){
-        if(storiesProgressView!=null){
+    public void destroyStories() {
+        if (storiesProgressView != null) {
             storiesProgressView.clearAnimation();
             storiesProgressView.destroy();
         }
