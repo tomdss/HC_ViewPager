@@ -40,13 +40,13 @@ public class FaceAdapter extends PagerAdapter {
         //1.XML->view
         View v = inflater.inflate(R.layout.item_page,container,false);
         //2.Anh xa view
-        LinearLayout lnContainer = v.findViewById(R.id.ln_container);
+        ImageView imgBg = v.findViewById(R.id.img_bg);
         ImageView imIcon = v.findViewById(R.id.im_icon);
         TextView tvName = v.findViewById(R.id.tv_name);
         //3.Do du lieu
         Face face = listFace.get(position);
 
-        lnContainer.setBackground(face.getColor());
+        imgBg.setImageResource(face.getColor());
         imIcon.setImageResource(face.getFaceId());
         tvName.setText(face.getName());
         //4.them vao container

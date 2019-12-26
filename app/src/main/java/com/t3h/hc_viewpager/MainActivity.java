@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
 
     private void initData() {
         listFace = new ArrayList<>();
-        listFace.add(new Face(imageSet(R.color.colorAccent), R.drawable.happy, "Happy Smile"));
-        listFace.add(new Face(imageSet(R.color.colorAs), R.drawable.muted, "No Smile"));
-        listFace.add(new Face(imageSet(R.color.colorAb), R.drawable.crying, "Crying ..."));
-        listFace.add(new Face(imageSet(R.color.colorPrimary), R.drawable.kiss, "Kiss ..."));
-        listFace.add(new Face(imageSet(R.color.colorPrimaryDark), R.drawable.sad, "Sad so much"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 0"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 1"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 2"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 3"));
+        listFace.add(new Face(R.drawable.slide_img_bg, R.drawable.vn_exp, getResources().getString(R.string.kham_pha)+" 4"));
     }
 
     private Drawable imageSet(int img) {
@@ -54,19 +54,32 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
 //        ciDemo = findViewById(R.id.ci_demo);
 //        ciDemo.setViewPager(vpPager);
         storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
+//        storiesProgressView.setStoriesCount(PROGRESS_COUNT); // <- set stories
+//        storiesProgressView.setStoryDuration(2500L); // <- set a story duration
+//        storiesProgressView.setStoriesListener(this); // <- set listener
+        setStories(0);
+        vpPager.addOnPageChangeListener(this);
+
+    }
+
+    public void setStories(int i) {
         storiesProgressView.setStoriesCount(PROGRESS_COUNT); // <- set stories
         storiesProgressView.setStoryDuration(2500L); // <- set a story duration
         storiesProgressView.setStoriesListener(this); // <- set listener
-        storiesProgressView.startStories(); // <- start progress
+        storiesProgressView.startStories(i); // <- start progress
+    }
 
-        vpPager.addOnPageChangeListener(this);
-
+    public void destroyStories(){
+        if(storiesProgressView!=null){
+            storiesProgressView.clearAnimation();
+            storiesProgressView.destroy();
+        }
     }
 
     @Override
     public void onNext() {
         Toast.makeText(this, "onNext", Toast.LENGTH_SHORT).show();
-        if(currentItem<4){
+        if (currentItem < 4) {
             currentItem++;
             vpPager.setCurrentItem(currentItem);
         }
@@ -76,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
     public void onPrev() {
         // Call when finished revserse animation.
         Toast.makeText(this, "onPrev", Toast.LENGTH_SHORT).show();
-        if(currentItem>0){
+        if (currentItem > 0) {
             currentItem--;
             vpPager.setCurrentItem(currentItem);
         }
@@ -87,9 +100,9 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
         Toast.makeText(this, "onComplete", Toast.LENGTH_SHORT).show();
         currentItem = 0;
         vpPager.setCurrentItem(currentItem);
-        storiesProgressView.startStories();
+        destroyStories();
+        setStories(0);
     }
-
 
 
     @Override
@@ -101,18 +114,19 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
 
     @Override
     public void onPageScrolled(int i, float v, int i1) {
-        Log.d("vpr onPageScrolled : ","i="+i+" v="+v+" i1="+i1);
+        Log.d("vpr onPageScrolled : ", "i=" + i + " v=" + v + " i1=" + i1);
     }
 
     @Override
     public void onPageSelected(int i) {
-        Log.d("vpr onPageSelected : ","i="+i);
+        Log.d("vpr onPageSelected : ", "i=" + i);
+        destroyStories();
         storiesProgressView.startStories(i);
 
     }
 
     @Override
     public void onPageScrollStateChanged(int i) {
-        Log.d("vpr onStateChanged : ","i="+i);
+        Log.d("vpr onStateChanged : ", "i=" + i);
     }
 }

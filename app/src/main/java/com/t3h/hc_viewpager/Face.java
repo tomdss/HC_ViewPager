@@ -4,22 +4,21 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 
 public class Face {
-    private Drawable color;
+    private int color;
     private int faceId;
     private String name;
 
-    public Face(Drawable color, int faceId, String name) {
+    public Face(int color, int faceId, String name) {
         this.color = color;
         this.faceId = faceId;
         this.name = name;
-
     }
 
-    public Drawable getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(Drawable color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
